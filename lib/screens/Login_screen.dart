@@ -15,6 +15,7 @@ import '../config/palette.dart';
 import '../controller/login_getx.dart';
 import '../navbar/Sidebar_menu.dart';
 import '../api/apifetch.dart';
+import 'Sidebar.dart';
 import 'register_screen.dart';
 // import 'forgot_password.dart';
 
@@ -41,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   APiFetch_Authentication api = APiFetch_Authentication();
   ControllerAuth c = Get.put(ControllerAuth());
-  final db =  FirebaseFirestore.instance.collection('User');
+  final db =  FirebaseFirestore.instance.collection('UserAdmin');
   final db_token =  FirebaseFirestore.instance.collection('Token');
 
 
@@ -93,40 +94,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       buildSigninSection(),
                       SizedBox(height: 30),
                       Container(
-                        height: 50, 
+                        height: 50,
                         width: 350,
                         decoration: BoxDecoration(
                           color: Palette.activeColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: TextButton(
-                          onPressed: () async {
-                            if(usernameLogin_editTextController.text.isNotEmpty && passwordLogin_editTextController.text.isNotEmpty){
-                              var body = {
-                                'username': usernameLogin_editTextController.text,
-                                'password': passwordLogin_editTextController.text,
-                              };
-                              var result = await api.LoginData(body, passwordLogin_editTextController.text, context);
-                              if(result == 'success'){
-                                if(isRememberMe){
-                                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                                  prefs.setString('user_remember', usernameLogin_editTextController.text);
-                                  prefs.setString('password_remember', passwordLogin_editTextController.text);
-                                }
-                                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
-                              }else{
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password salah')));
-                              }
-                            }else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password tidak boleh kosong')));
-                            }
+                          onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => SidebarPage()), 
+                              );
                           },
-                          child: Text(
-                            'Masuk',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
+                          child: Center(
+                            child: Text(
+                              'Masuk',
+                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, color: Colors.white),
                             ),
                           ),
                         ),
@@ -139,7 +123,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: 20),
-                
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -179,8 +162,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     init();
   }
-
-
   slideTop(){
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -236,184 +217,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ],
     );
   }
-  // buildBottomHalfContainer() {
-  //   return AnimatedPositioned(
-  //     duration: Duration(milliseconds: 700),
-  //     curve: Curves.bounceInOut,
-  //     top: isSignupScreen ? MediaQuery.of(context).size.height*76/100 : MediaQuery.of(context).size.height*60.8/100,
-  //     right: 0,
-  //     left: 0,
-  //     child: Center(
-  //       child: InkWell(
-  //         onTap: () async {
-  //           SharedPreferences prefs = await SharedPreferences.getInstance();
-  //           var uuid = Random().nextInt(10000);
-  //           String token = DateTime.now().toString()+uuid.toString();
-  //           Map<String,dynamic> bodyRegist = {'uuid':uuid.toString(),'username':usernameRegist_editTextController.text,'name':nameRegist_editTextController.text, 'email':emailRegist_editTextController.text, 'password':passwordRegist_editTextController.text, 'confirm_password':confirmPassRegist_editTextController.text, 'gender':isMale?'L':'P','birth_of_date':datePickerController.text,'image': isMale?'https://shopper.nitipaja.online/storage/images/Boy.png':'https://shopper.nitipaja.online/storage/images/Girl.png', 'status' : false, 'token':token, 'driver':false};
-  //           Map<String,dynamic> body = {'email':usernameLogin_editTextController.text,'password':passwordLogin_editTextController.text, 'user_code': await PushNotificationConfig().requestPermission()};
-  //           setState(() async {
-  //             if(isSignupScreen){
-  //               if(usernameRegist_editTextController.text==''||usernameRegist_editTextController.text==null) {
-  //                 toast(text: 'Masukkan Username Anda');
-  //               }else
-  //               if(nameRegist_editTextController.text==''||nameRegist_editTextController.text==null) {
-  //                 toast(text: 'Masukkan Nama Lengkap Anda');
-  //               }else
-  //               if(emailRegist_editTextController.text==''||emailRegist_editTextController.text==null) {
-  //                 toast(text: 'Masukkan Email Anda');
-  //               }else
-  //               if(!emailRegist_editTextController.text.contains('@')) {
-  //                 toast(text: 'Masukkan Email Dengan Benar');
-  //               }else
-  //                 if(datePickerController.text==''||datePickerController.text==null) {
-  //                 toast(text: 'Masukkan Tanggal Lahir Anda');
-  //               }
-  //               else
-  //               if(passwordRegist_editTextController.text==''||passwordRegist_editTextController.text==null) {
-  //                 toast(text: 'Masukkan Kata Sandi Anda');
-  //               }else
-  //               if(confirmPassRegist_editTextController.text==''||confirmPassRegist_editTextController.text==null) {
-  //                 toast(text: 'Masukkan Konfirmasi Kata Sandi Anda');
-  //               }else
-  //               if(passwordRegist_editTextController.text.length<5) {
-  //                 print(passwordRegist_editTextController.text.length);
-  //                 toast(text: 'Password Harus Lebih Dari 5 Karakter');
-  //               }else
-  //               if(passwordRegist_editTextController.text!=confirmPassRegist_editTextController.text) {
-  //                 toast(text: 'Masukkan Kata Sandi Tidak Sama');
-  //               }
-  //               else
-  //               if(usernameRegist_editTextController.text.contains('AQWERTYUIOPASDFGHJKLZXCVBNM[]{};:"<>,!@#\'%^&&*()\$-=+')||usernameRegist_editTextController.text.contains(' ')) {
-  //                 toast(text: 'Username Tidak Diterima');
-  //               }
-  //               // else
-  //               // if(!datePickerController.text.contains(DateFormat.yMMMd().pattern.toString())) {
-  //               //   toast(text: 'Format Tanggal Lahir Salah');
-  //               // }
-  //               else{
-  //                 bool s = false;
-  //                 QuerySnapshot stream = await db.get();
-  //                 List data = stream.docs.map((DocumentSnapshot document) {
-  //                   return document.data()! as Map<String, dynamic>;}).toList();
-  //                 data.forEach((element) {
-  //                   if(bodyRegist['username']==element['username']) {
-  //                     s = false;
-  //                     toast(text: 'Nama Pengguna Sudah Dipakai');
-  //                   }else
-  //                   if(bodyRegist['name']==element['name']) {
-  //                     s = false;
-  //                     toast(text: 'Nama Lengkap Sudah Dipakai');
-  //                   }else
-  //                   if(bodyRegist['email']==element['email']) {
-  //                     s = false;
-  //                     toast(text: 'Email Sudah Dipakai');
-  //                   }else{
-  //                     s = true;
-  //                   }
-  //                 });
-
-  //                 if(s ) {
-  //                   db.doc(token).set(bodyRegist);
-  //                   setState(() {
-  //                     isSignupScreen = false;
-  //                   });
-  //                   usernameRegist_editTextController.text ='';
-  //                   nameRegist_editTextController.text ='';
-  //                   emailRegist_editTextController.text ='';
-  //                   passwordRegist_editTextController.text ='';
-  //                   confirmPassRegist_editTextController.text ='';
-  //                   datePickerController.text ='';
-  //                 }
-  //               }
-  //             }
-  //             else{
-  //               if(usernameLogin_editTextController.text==''||usernameLogin_editTextController.text==null)toast(text: 'Masukkan Username Anda');
-  //               if(passwordLogin_editTextController.text==''||passwordLogin_editTextController.text==null)toast(text: 'Masukkan Nama Lengkap Anda');
-  //               QuerySnapshot stream = await db.get();
-  //               List data = stream.docs.map((DocumentSnapshot document) {
-  //                 return document.data()! as Map<String, dynamic>;}).toList();
-  //               data.forEach((element) async {
-  //                 if(body['email']==element['email']) {
-  //                   int i = data.indexWhere((e) => body['email']==e['email']);
-  //                   if(body['password']==data[i]['password']) {
-  //                     token = data[i]['token'];
-  //                     c.token.value = token;
-  //                     c.password.value = body['password'].toString();
-  //                     prefs.setString('token', token);
-  //                     prefs.setString('password', body['password']);
-  //                     Map<String,dynamic> body_token = {'token':c.token.toString(), 'user_code':await PushNotificationConfig().requestPermission()};
-  //                     db_token.add(body_token);
-  //                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => data[i]['status'].toString().contains('true')? Jastiper_View_page():BottomNavBar(),));
-  //                   }else{
-  //                     toast(text: 'Password Salah');
-  //                   }
-  //                 }else
-  //                 if(body['email']==element['username']) {
-  //                   int i = data.indexWhere((e) => body['email']==e['username']);
-  //                   if(body['password']==data[i]['password']) {
-  //                     token = data[i]['token'];
-  //                     c.token.value = token;
-  //                     c.password.value = body['password'].toString();
-  //                     prefs.setString('token', token);
-  //                     prefs.setString('password', body['password']);
-  //                     Map<String,dynamic> body_token = {'token':c.token.toString(), 'user_code':await PushNotificationConfig().requestPermission()};
-  //                     db_token.doc(c.token.toString()).set(body_token);
-  //                     final doc = await db.doc(c.token.toString()).get();
-  //                     Map<String, dynamic> datauser = doc.data() ?? {};
-  //                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => datauser['status'].toString().contains('true')? Jastiper_View_page():BottomNavBar(),));
-  //                   }else{
-  //                     toast(text: 'Password Salah');
-  //                   }
-  //                 }
-  //               });
-  //               if(isRememberMe) {
-  //               prefs.setString('user_remember', usernameLogin_editTextController.text);
-  //               prefs.setString(
-  //                   'password_remember', passwordLogin_editTextController.text);
-  //             }else{
-  //                 prefs.remove('user_remember');
-  //                 prefs.remove('password_remember');
-  //               }
-  //             }
-  //           });
-  //         },
-  //         child: Container(
-  //           height: 90,
-  //           width: 90,
-  //           padding: EdgeInsets.all(15),
-  //           decoration: BoxDecoration(
-  //               color: Colors.white,
-  //               borderRadius: BorderRadius.circular(50),
-  //               boxShadow: [
-  //                 BoxShadow(
-  //                     blurRadius: 2,
-  //                     color: Colors.grey,
-  //                     offset: Offset(0, 5)
-  //                 )
-  //               ]),
-  //           child:  Container(
-  //             decoration: BoxDecoration(
-  //                 color: Palette.activeColor,
-  //                 borderRadius: BorderRadius.circular(30),
-  //                 boxShadow: [
-  //                   BoxShadow(
-  //                       color: Colors.black.withOpacity(.3),
-  //                       spreadRadius: 1,
-  //                       blurRadius: 2,
-  //                       offset: Offset(0, 1))
-  //                 ]),
-  //             child: isSignupScreen?Icon(
-  //               Icons.check_rounded,
-  //               color: Colors.white):Icon(
-  //               Icons.arrow_forward,
-  //               color: Colors.white,
-  //             ),
-  //           )
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
   Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
     print("Handling a background message: ${message.messageId}");
   }
@@ -422,7 +225,7 @@ class _LoginScreenState extends State<LoginScreen> {
       margin: EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          buildTextField("Email atau username", false, true, controller: usernameLogin_editTextController),
+          buildTextField("Email", false, true, controller: usernameLogin_editTextController),
           buildTextField("Kata Sandi", true, false, index: 2, controller: passwordLogin_editTextController),
           rememberMe(),
           // button('Masuk', true),
@@ -677,7 +480,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(50)),
-                          color: Colors.white,
+                          color: Palette.TextColor3,
                         ),
                         child: Container(
                           padding: EdgeInsets.all(10),

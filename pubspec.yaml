@@ -58,6 +58,7 @@ dependencies:
   simple_url_preview: ^3.0.1
   url_launcher: ^6.1.12
   swipe_to: ^1.0.2
+  google_fonts: ^4.0.4
 
 dev_dependencies:
   flutter_test:

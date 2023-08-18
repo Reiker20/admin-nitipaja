@@ -41,7 +41,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   APiFetch_Authentication api = APiFetch_Authentication();
   ControllerAuth c = Get.put(ControllerAuth());
-  final db =  FirebaseFirestore.instance.collection('User');
+  final db =  FirebaseFirestore.instance.collection('UserAdmin');
   final db_token =  FirebaseFirestore.instance.collection('Token');
 
 
@@ -99,37 +99,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: Palette.activeColor,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: TextButton(
-                          onPressed: () async {
-                            if(usernameLogin_editTextController.text.isNotEmpty && passwordLogin_editTextController.text.isNotEmpty){
-                              var body = {
-                                'username': usernameLogin_editTextController.text,
-                                'password': passwordLogin_editTextController.text,
-                              };
-                              var result = await api.LoginData(body, passwordLogin_editTextController.text, context);
-                              if(result == 'success'){
-                                if(isRememberMe){
-                                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                                  prefs.setString('user_remember', usernameLogin_editTextController.text);
-                                  prefs.setString('password_remember', passwordLogin_editTextController.text);
-                                }
-                                // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
-                              }else{
-                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password salah')));
-                              }
-                            }else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password tidak boleh kosong')));
-                            }
-                          },
-                          child: Text(
-                            'Daftar',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
+                        // child: TextButton(
+                        //   onPressed: () async {
+                        //     if(usernameLogin_editTextController.text.isNotEmpty && passwordLogin_editTextController.text.isNotEmpty){
+                        //       var body = {
+                        //         'username': usernameLogin_editTextController.text,
+                        //         'password': passwordLogin_editTextController.text,
+                        //       };
+                        //       var result = await api.LoginData(body, passwordLogin_editTextController.text, context);
+                        //       if(result == 'success'){
+                        //         if(isRememberMe){
+                        //           SharedPreferences prefs = await SharedPreferences.getInstance();
+                        //           prefs.setString('user_remember', usernameLogin_editTextController.text);
+                        //           prefs.setString('password_remember', passwordLogin_editTextController.text);
+                        //         }
+                        //         // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+                        //       }else{
+                        //         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password salah')));
+                        //       }
+                        //     }else{
+                        //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Username atau Password tidak boleh kosong')));
+                        //     }
+                        //   },
+                        //   child: Text(
+                        //     'Daftar',
+                        //     style: TextStyle(
+                        //       fontSize: 20,
+                        //       fontWeight: FontWeight.w500,
+                        //       color: Colors.white,
+                        //     ),
+                        //   ),
+                        // ),
                       ),
                       SizedBox(height: 30),
                       Text('Atau',style: TextStyle(fontSize: 15,fontWeight: FontWeight.w600,color: Colors.black54,),),

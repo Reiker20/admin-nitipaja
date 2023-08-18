@@ -112,12 +112,12 @@ class BottomNavBar extends StatelessWidget {
           SidebarMenu(),
           Expanded(
             child: Obx(() => _navBarController.nav.value == 0
-                ? DashboardPage()
+                ? HomeScreen()
                 : _navBarController.nav.value == 1
-                    ? UserPage()
+                    ? UserScreen()
                     : _navBarController.nav.value == 2
-                        ? ReportPage()
-                        : AdminPage()),
+                        ? ReportScreen()
+                        : AdminScreen()),
           ),
         ],
       ),
