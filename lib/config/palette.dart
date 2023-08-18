@@ -21,7 +21,6 @@ class Palette {
  static const Color check3 = Color(0xff7499e0);
  static const Color check4 = Color(0xff5687e6);
  static const Color check5 = Color(0xff4677d5);
-static const Color google= Color(0xff3b6cc0);
 
  static const MaterialColor primary = MaterialColor(
      0xFFEE7F74,
