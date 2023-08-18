@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ReportPage extends StatefulWidget {
-  const ReportPage({super.key});
+class ReportScreen extends StatefulWidget {
+  const ReportScreen({super.key});
 
   @override
-  State<ReportPage> createState() => _ReportPageState();
+  State<ReportScreen> createState() => _ReportScreenState();
 }
 
-class _ReportPageState extends State<ReportPage> {
+class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
