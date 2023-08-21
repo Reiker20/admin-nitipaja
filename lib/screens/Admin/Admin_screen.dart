@@ -12,29 +12,52 @@ class _AdminScreenState extends State<AdminScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                child: Column(
-                  children: [
-                    Image.network(
-                      'https://firebasestorage.googleapis.com/v0/b/shopper-89651.appspot.com/o/shopper.png?alt=media&token=904b0686-8db5-4f59-b655-7eb2349f4280',
-                      height: 240,
-                      width: 250,
-                    ),
-                    SizedBox(height: 10,),
-                    Text(
-                      'Masuk',
-                      style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                  ],
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        actions: [
+          // Search Bar
+          Container(
+            width: 200,
+            margin: EdgeInsets.only(right: 16),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Cari...',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(6),
                 ),
-              )
-            ],
+                contentPadding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
+                suffixIcon: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    color: Colors.blue, // Ganti dengan warna yang diinginkan
+                  ),
+                  height: 24,
+                  width: 24,
+                  child: Icon(Icons.search, color: Colors.white),
+                ),
+              ),
+              onChanged: (value) {
+                // Handle onChanged event here
+              },
+            ),
           ),
+          SizedBox(width: 16),
+          // Dropdown Profil
+          DropdownButton<String>(
+            items: ['Logout']
+                .map((String value) => DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    ))
+                .toList(),
+            onChanged: (String? newValue) {
+              // Handle onChanged event here
+            },
+          ),
+          SizedBox(width: 16),
+        ],
       ),
     );
   }
