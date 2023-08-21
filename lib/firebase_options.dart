@@ -20,12 +20,12 @@ class DefaultFirebaseOptions {
       return web;
     }
     switch (defaultTargetPlatform) {
-      case TargetPlatform.android:
-        return android;
-      case TargetPlatform.iOS:
-        return ios;
-      case TargetPlatform.macOS:
-        return macos;
+      // case TargetPlatform.android:
+      //   return android;
+      // case TargetPlatform.iOS:
+      //   return ios;
+      // case TargetPlatform.macOS:
+      //   return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,40 +44,42 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCTzscstZsBRovefyK6JoNjHyLxoYN-7IY',
-    appId: '1:1023746513206:web:e6613be2411a9e76c43b97',
-    messagingSenderId: '1023746513206',
-    projectId: 'shopper-89651',
-    authDomain: 'shopper-89651.firebaseapp.com',
-    storageBucket: 'shopper-89651.appspot.com',
-    measurementId: 'G-DLR5JDEYKM',
-  );
+        apiKey: "AIzaSyCTzscstZsBRovefyK6JoNjHyLxoYN-7IY",
+        authDomain: "shopper-89651.firebaseapp.com",
+        databaseURL: "https://shopper-89651-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "shopper-89651",
+        storageBucket: "shopper-89651.appspot.com",
+        messagingSenderId: "1023746513206",
+        appId: "1:1023746513206:web:e6613be2411a9e76c43b97",
+        measurementId: "G-DLR5JDEYKM");
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCaihht30uCJAAhmyV4FzbPUg2TZZ8OrNY',
-    appId: '1:1023746513206:android:ff5bd0748de57b2ac43b97',
-    messagingSenderId: '1023746513206',
-    projectId: 'shopper-89651',
-    storageBucket: 'shopper-89651.appspot.com',
-  );
+        
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
-    appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
-    messagingSenderId: '1023746513206',
-    projectId: 'shopper-89651',
-    storageBucket: 'shopper-89651.appspot.com',
-    iosClientId: '1023746513206-kq39bcqi3c2dngcgh4v3o0g75dgq1mvs.apps.googleusercontent.com',
-    iosBundleId: 'com.example.shopperProjects',
-  );
+  // static const FirebaseOptions android = FirebaseOptions(
+  //   apiKey: 'AIzaSyCaihht30uCJAAhmyV4FzbPUg2TZZ8OrNY',
+  //   appId: '1:1023746513206:android:ff5bd0748de57b2ac43b97',
+  //   messagingSenderId: '1023746513206',
+  //   projectId: 'shopper-89651',
+  //   storageBucket: 'shopper-89651.appspot.com',
+  // );
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
-    appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
-    messagingSenderId: '1023746513206',
-    projectId: 'shopper-89651',
-    storageBucket: 'shopper-89651.appspot.com',
-    iosClientId: '1023746513206-kq39bcqi3c2dngcgh4v3o0g75dgq1mvs.apps.googleusercontent.com',
-    iosBundleId: 'com.example.shopperProjects',
-  );
+  // static const FirebaseOptions ios = FirebaseOptions(
+  //   apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
+  //   appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
+  //   messagingSenderId: '1023746513206',
+  //   projectId: 'shopper-89651',
+  //   storageBucket: 'shopper-89651.appspot.com',
+  //   iosClientId: '1023746513206-kq39bcqi3c2dngcgh4v3o0g75dgq1mvs.apps.googleusercontent.com',
+  //   iosBundleId: 'com.example.shopperProjects',
+  // );
+
+  // static const FirebaseOptions macos = FirebaseOptions(
+  //   apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
+  //   appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
+  //   messagingSenderId: '1023746513206',
+  //   projectId: 'shopper-89651',
+  //   storageBucket: 'shopper-89651.appspot.com',
+  //   iosClientId: '1023746513206-kq39bcqi3c2dngcgh4v3o0g75dgq1mvs.apps.googleusercontent.com',
+  //   iosBundleId: 'com.example.shopperProjects',
+  // );
 }

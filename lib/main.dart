@@ -10,6 +10,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  
   // NotificationService().initNotification();
 
   runApp(MaterialApp(
@@ -21,5 +22,7 @@ void main() async{
     LoginScreen()
   ));
 }
+
+
 
 
