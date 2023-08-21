@@ -53,6 +53,7 @@ class DefaultFirebaseOptions {
         appId: "1:1023746513206:web:e6613be2411a9e76c43b97",
         measurementId: "G-DLR5JDEYKM");
 
+<<<<<<< HEAD
         
 
   // static const FirebaseOptions android = FirebaseOptions(
@@ -73,6 +74,26 @@ class DefaultFirebaseOptions {
   //   iosBundleId: 'com.example.shopperProjects',
   // );
 
+=======
+  // static const FirebaseOptions android = FirebaseOptions(
+  //   apiKey: 'AIzaSyCaihht30uCJAAhmyV4FzbPUg2TZZ8OrNY',
+  //   appId: '1:1023746513206:android:ff5bd0748de57b2ac43b97',
+  //   messagingSenderId: '1023746513206',
+  //   projectId: 'shopper-89651',
+  //   storageBucket: 'shopper-89651.appspot.com',
+  // );
+
+  // static const FirebaseOptions ios = FirebaseOptions(
+  //   apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
+  //   appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
+  //   messagingSenderId: '1023746513206',
+  //   projectId: 'shopper-89651',
+  //   storageBucket: 'shopper-89651.appspot.com',
+  //   iosClientId: '1023746513206-kq39bcqi3c2dngcgh4v3o0g75dgq1mvs.apps.googleusercontent.com',
+  //   iosBundleId: 'com.example.shopperProjects',
+  // );
+
+>>>>>>> 9391f7a5634b3110d8bd6f6c59b58e61910c89a2
   // static const FirebaseOptions macos = FirebaseOptions(
   //   apiKey: 'AIzaSyCkbiBIbFQAaW-XkJST4coI8pkCwv40uH0',
   //   appId: '1:1023746513206:ios:7f374534cc82d74ec43b97',
