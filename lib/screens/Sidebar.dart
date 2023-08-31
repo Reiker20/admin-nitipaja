@@ -2,7 +2,7 @@ import 'package:adminnitipaja/config/palette.dart';
 import 'package:flutter/material.dart';
 import 'Admin/Admin_screen.dart';
 import 'Home/Home_screen.dart';
-import 'Report/Report_screen.dart';
+// import 'Report/Report_screen.dart';
 import 'User/User_screen.dart';
 
 class SidebarPage extends StatefulWidget {
@@ -18,7 +18,7 @@ class _SidebarPageState extends State<SidebarPage> {
   Map<String, Widget> _pageMap = {
     'Home': HomeScreen(),
     'User': UserScreen(),
-    'Report': ReportScreen(),
+    // 'Report': ReportScreen(),
     'Admin': AdminScreen(),
   };
 

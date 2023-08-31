@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 
@@ -9,6 +10,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
+  Future<List<Map<String, dynamic>>> getUsersData() async {
+    final QuerySnapshot<Map<String, dynamic>> snapshot =
+        await FirebaseFirestore.instance.collection('User').get();
+
+    return snapshot.docs.map((doc) => doc.data()).toList();
+  }
+
+  Future<int> countUsers() async {
+    final QuerySnapshot<Map<String, dynamic>> snapshot =
+        await FirebaseFirestore.instance.collection('User').get();
+
+    return snapshot.size;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

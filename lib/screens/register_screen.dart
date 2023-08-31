@@ -271,7 +271,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   content: Text('Berhasil mendaftar'),
                                 ),
                               );
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()),);
+                              Navigator.pop(context, {
+                                'email': _emailController.text.trim(),
+                                'password': _passwordController.text.trim(),
+                              });
+                              // Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()),);
                             }
                           },
                           child: Center(
