@@ -25,8 +25,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final _emailmskController = TextEditingController();
+  final _emailmskController = TextEditingController(); 
   final _passwordmskController = TextEditingController();
+
+  String registeredEmail = '';
+  String registeredPassword = '';
   @override
   void dispose() {
     super.dispose();
@@ -121,11 +124,26 @@ class _LoginScreenState extends State<LoginScreen> {
                           borderRadius: BorderRadius.circular(50),
                         ),
                         child: TextButton(
+                          // onPressed: () {
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(builder: (context) => SidebarPage()), 
+                          //     );
+                          // },
                           onPressed: () {
+                            if (_emailmskController.text.trim() == registeredEmail &&
+                                _passwordmskController.text.trim() == registeredPassword) {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => SidebarPage()), 
+                                MaterialPageRoute(builder: (context) => SidebarPage()),
                               );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Email atau password salah.'),
+                                ),
+                              );
+                            }
                           },
                           child: Center(
                             child: Text(
